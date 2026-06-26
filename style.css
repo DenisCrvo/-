@@ -1,0 +1,101 @@
+/* Paleta dark menos pesada — navy-slate em vez de preto puro */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #1c2a3a;
+    --bs-body-color: #d1dce8;
+    --bs-card-bg: #243347;
+    --bs-border-color: #2e4060;
+    --bs-secondary-color: #8aa0bc;
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.04);
+}
+
+body {
+    background-color: #1c2a3a;
+}
+
+/* Cards */
+.card {
+    background-color: #243347;
+    border-color: #2e4060 !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Card total — destaque sutil */
+.card-total {
+    border: 1px solid rgba(25, 135, 84, 0.35) !important;
+    background-color: #1e3830 !important;
+}
+
+/* Seções internas dos formulários */
+.inner-section {
+    background-color: #1c2a3a;
+    border: 1px solid #2e4060;
+}
+
+/* Inputs e selects */
+.form-control,
+.form-select {
+    background-color: #1c2a3a;
+    border-color: #2e4060;
+    color: #d1dce8;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #1c2a3a;
+    border-color: #4d80b0;
+    color: #d1dce8;
+    box-shadow: 0 0 0 0.2rem rgba(77, 128, 176, 0.2);
+}
+
+.form-control::placeholder {
+    color: #5a7290;
+}
+
+/* Checkbox */
+.form-check-input {
+    background-color: #1c2a3a;
+    border-color: #2e4060;
+}
+
+/* Bordas internas */
+.border-bottom {
+    border-color: #2e4060 !important;
+}
+
+/* Tabela (caso adicione futuramente) */
+.table {
+    --bs-table-color: #b0c4d8;
+}
+
+.table thead th {
+    color: #8aa0bc;
+    border-bottom-color: #2e4060;
+    font-size: 0.7rem;
+}
+
+.table td,
+.table th {
+    border-color: #2e4060;
+}
+
+/* Scrollbar webkit */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #1c2a3a;
+}
+::-webkit-scrollbar-thumb {
+    background: #3a5270;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4d6e8f;
+}
