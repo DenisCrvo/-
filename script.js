@@ -1,7 +1,7 @@
 // script.js
 // Script unificado que gerencia as chamadas HTTP e a interface de usuário
 
-const API_URL = "https://seu-worker.seu-subdominio.workers.dev"; // Ajuste para o seu Worker D1
+const API_URL = "https://gestao-residencial-api.deniscrvo.workers.dev";
 let meuGrafico;
 
 document.addEventListener("DOMContentLoaded", () => {
