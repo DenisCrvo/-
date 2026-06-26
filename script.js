@@ -46,25 +46,39 @@ function renderizarGrafico(dados) {
 
     if (meuGrafico) meuGrafico.destroy();
 
+    const projecaoMensal = Array(12).fill(13500);
+
     meuGrafico = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
-            datasets: [{
-                label: 'Custo Total Projetado (R$)',
-                data: valores,
-                borderColor: '#10b981',
-                backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                borderWidth: 3,
-                fill: true,
-                tension: 0.3,
-                pointBackgroundColor: '#10b981'
-            }]
+            datasets: [
+                {
+                    label: 'Custo Total Acumulado (R$)',
+                    data: valores,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: '#10b981'
+                },
+                {
+                    label: 'Projeção Mensal (R$)',
+                    data: projecaoMensal,
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [6, 4],
+                    pointRadius: 0,
+                    tension: 0
+                }
+            ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
+            plugins: { legend: { display: true, labels: { color: '#94a3b8', boxWidth: 20 } } },
             scales: {
                 y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
                 x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
