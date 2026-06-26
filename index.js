@@ -41,7 +41,7 @@ export default {
              const encargosPatronais = baseEncargos * (0.08 + 0.008 + 0.08 + 0.032);
              custoPaula = baseEncargos + custoVT + encargosPatronais;
           } else {
-             custoPaula = 2037.08; // Projeção padrão
+             custoPaula = 13500.00; // Projeção padrão
           }
 
           const totalDespesas = despesasMes.reduce((acc, curr) => acc + curr.valor, 0);
