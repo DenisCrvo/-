@@ -5,12 +5,16 @@ const API_URL = "https://gestao-residencial-api.deniscrvo.workers.dev";
 let meuGrafico;
 
 document.addEventListener("DOMContentLoaded", () => {
+    const mesAtual = new Date().getMonth() + 1; // 1-12
+    const proximoMes = mesAtual === 12 ? 1 : mesAtual + 1;
+    document.getElementById("filtro-mes").value = proximoMes;
+
     carregarDadosDashboard();
 
     document.getElementById("filtro-ano").addEventListener("change", carregarDadosDashboard);
+    document.getElementById("filtro-mes").addEventListener("change", carregarDadosDashboard);
     document.getElementById("form-despesa").addEventListener("submit", salvarDespesa);
     document.getElementById("form-folha").addEventListener("submit", calcularFolha);
-
 });
 
 // --- FUNÇÕES DO DASHBOARD GERAL ---
@@ -28,15 +32,27 @@ async function carregarDadosDashboard() {
     }
 }
 
-function atualizarKPIs(dados) {
-    const totais = dados.map(d => d.totalGeral);
-    const totalAno = totais.reduce((a, b) => a + b, 0);
-    const media = totalAno / 12;
-    const pico = Math.max(...totais);
+const CATEGORIAS_CARTAO = ["NUBANK", "BRADESCO", "ITAU", "SANTANDER", "INTER", "C6", "CARTAO"];
 
-    document.getElementById("media-prevista").innerText = formatarMoeda(media);
-    document.getElementById("pico-projetado").innerText = formatarMoeda(pico);
-    document.getElementById("total-ano").innerText = formatarMoeda(totalAno);
+function atualizarKPIs(dados) {
+    const mesAtual = new Date().getMonth() + 1;
+    const proximoMes = mesAtual === 12 ? 1 : mesAtual + 1;
+    const nomesMes = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+
+    const dadosMes = dados.find(d => d.mes === proximoMes) || {};
+    const despesas = dadosMes.despesas || [];
+
+    const totalCartoes = despesas
+        .filter(d => CATEGORIAS_CARTAO.some(c => d.categoria.toUpperCase().includes(c)))
+        .reduce((acc, d) => acc + d.valor, 0);
+
+    const label = `Próx. mês: ${nomesMes[proximoMes - 1]}`;
+
+    document.getElementById("kpi-cartoes").innerText = formatarMoeda(totalCartoes);
+    document.getElementById("kpi-paula").innerText   = formatarMoeda(dadosMes.custoPaula || 0);
+    document.getElementById("kpi-total").innerText   = formatarMoeda(dadosMes.totalGeral || 0);
+
+    document.querySelectorAll(".kpi-mes-ref").forEach(el => el.textContent = label);
 }
 
 function renderizarGrafico(dados) {
@@ -49,7 +65,7 @@ function renderizarGrafico(dados) {
     const projecaoMensal = Array(12).fill(13500);
 
     meuGrafico = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [
@@ -64,6 +80,7 @@ function renderizarGrafico(dados) {
                     pointBackgroundColor: '#10b981'
                 },
                 {
+                    type: 'line',
                     label: 'Projeção Mensal (R$)',
                     data: projecaoMensal,
                     borderColor: '#f59e0b',

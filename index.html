@@ -18,10 +18,26 @@
                 <h1 class="h3 fw-bold mb-1">Dashboard Residencial</h1>
                 <p class="text-secondary mb-0 small">Gestão de Despesas e Módulo eSocial Unificados</p>
             </div>
-            <select id="filtro-ano" class="form-select form-select-sm w-auto">
-                <option value="2026" selected>2026</option>
-                <option value="2027">2027</option>
-            </select>
+            <div class="d-flex gap-2">
+                <select id="filtro-ano" class="form-select form-select-sm w-auto">
+                    <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
+                </select>
+                <select id="filtro-mes" class="form-select form-select-sm w-auto">
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
         </header>
 
         <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
@@ -29,9 +45,10 @@
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body">
                         <p class="text-uppercase small fw-semibold text-secondary mb-1">
-                            <i class="bi bi-calendar-check me-1"></i>Média Mensal Prevista
+                            <i class="bi bi-credit-card me-1"></i>Fatura Cartões de Crédito
                         </p>
-                        <p id="media-prevista" class="fs-3 fw-bold text-info mb-0">R$ 0,00</p>
+                        <p id="kpi-cartoes" class="fs-3 fw-bold text-info mb-0">R$ 0,00</p>
+                        <p class="kpi-mes-ref text-secondary mb-0" style="font-size:0.7rem;"></p>
                     </div>
                 </div>
             </div>
@@ -39,9 +56,10 @@
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body">
                         <p class="text-uppercase small fw-semibold text-secondary mb-1">
-                            <i class="bi bi-graph-up-arrow me-1"></i>Pico de Gastos Projetado
+                            <i class="bi bi-person-badge me-1"></i>Total de Gastos com Paula
                         </p>
-                        <p id="pico-projetado" class="fs-3 fw-bold text-danger mb-0">R$ 0,00</p>
+                        <p id="kpi-paula" class="fs-3 fw-bold text-warning mb-0">R$ 0,00</p>
+                        <p class="kpi-mes-ref text-secondary mb-0" style="font-size:0.7rem;"></p>
                     </div>
                 </div>
             </div>
@@ -49,9 +67,10 @@
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body">
                         <p class="text-uppercase small fw-semibold text-secondary mb-1">
-                            <i class="bi bi-cash-stack me-1"></i>Custo Total Anual
+                            <i class="bi bi-cash-stack me-1"></i>Total Geral de Gastos
                         </p>
-                        <p id="total-ano" class="fs-3 fw-bold text-success mb-0">R$ 0,00</p>
+                        <p id="kpi-total" class="fs-3 fw-bold text-success mb-0">R$ 0,00</p>
+                        <p class="kpi-mes-ref text-secondary mb-0" style="font-size:0.7rem;"></p>
                     </div>
                 </div>
             </div>
